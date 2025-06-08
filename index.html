@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eBay Listing Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>eBay Listing Generator</h1>
+            <p class="header-subtitle">Generate professional eBay listings with AI-powered product analysis</p>
+        </header>
+
+        <!-- Upload Section -->
+        <div class="card upload-section">
+            <div class="card__header">
+                <h2>Upload Product Images</h2>
+                <p>Drag and drop images or click to select (JPEG, PNG, WebP, GIF)</p>
+            </div>
+            <div class="card__body">
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-content">
+                        <div class="upload-icon">📸</div>
+                        <p class="upload-text">Drop images here or click to browse</p>
+                        <input type="file" id="fileInput" multiple accept="image/jpeg,image/png,image/webp,image/gif" class="hidden">
+                    </div>
+                </div>
+                <div class="uploaded-images" id="uploadedImages"></div>
+            </div>
+        </div>
+
+        <!-- Image Optimization Section -->
+        <div class="card optimization-section">
+            <div class="card__header">
+                <h2>Image Optimization</h2>
+                <p>Optimize images for eBay listings (max 600x600px)</p>
+            </div>
+            <div class="card__body">
+                <div class="form-group">
+                    <label class="form-label">Quality Level</label>
+                    <select class="form-control" id="qualitySelect">
+                        <option value="high">High Quality (90%)</option>
+                        <option value="medium" selected>Medium Quality (70%)</option>
+                        <option value="low">Low Quality (50%)</option>
+                    </select>
+                </div>
+                <div class="character-counter">
+                    <div class="counter-info">
+                        <span class="counter-text">Character Usage: </span>
+                        <span class="counter-value" id="characterCount">0</span>
+                        <span class="counter-limit"> / 500,000</span>
+                    </div>
+                    <div class="counter-bar">
+                        <div class="counter-progress" id="characterProgress"></div>
+                    </div>
+                    <div class="counter-status" id="characterStatus">Safe</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Analysis Section -->
+        <div class="card analysis-section">
+            <div class="card__header">
+                <h2>AI Analysis</h2>
+                <p>Analyze your product images with Gemini AI</p>
+            </div>
+            <div class="card__body">
+                <button class="btn btn--primary btn--full-width" id="analyzeBtn">
+                    <span class="btn-text">Analyze with AI</span>
+                    <span class="btn-loader hidden" id="analyzeLoader">🔄 Analyzing...</span>
+                </button>
+                <div class="analysis-error hidden" id="analysisError"></div>
+            </div>
+        </div>
+
+        <!-- Generated Content Section -->
+        <div class="card content-section hidden" id="contentSection">
+            <div class="card__header">
+                <h2>Generated Listing</h2>
+                <p>Edit and customize your eBay listing</p>
+            </div>
+            <div class="card__body">
+                <div class="form-group">
+                    <label class="form-label">Title (Max 80 characters)</label>
+                    <input type="text" class="form-control" id="titleInput" maxlength="80">
+                    <div class="title-counter">
+                        <span id="titleCount">0</span>/80 characters
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Product Description</label>
+                    <textarea class="form-control" id="descriptionInput" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Key Features</label>
+                    <textarea class="form-control" id="featuresInput" rows="6"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Specifications</label>
+                    <textarea class="form-control" id="specificationsInput" rows="6"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="card preview-section hidden" id="previewSection">
+            <div class="card__header">
+                <h2>Listing Preview</h2>
+                <p>Preview how your listing will appear on eBay</p>
+            </div>
+            <div class="card__body">
+                <div class="preview-container" id="previewContainer">
+                    <div class="preview-title" id="previewTitle"></div>
+                    <div class="preview-content" id="previewContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Export Section -->
+        <div class="card export-section hidden" id="exportSection">
+            <div class="card__header">
+                <h2>Export Listing</h2>
+                <p>Copy or download your eBay-ready listing</p>
+            </div>
+            <div class="card__body">
+                <div class="export-buttons">
+                    <button class="btn btn--primary" id="copyBtn">
+                        📋 Copy to Clipboard
+                    </button>
+                    <button class="btn btn--secondary" id="downloadBtn">
+                        💾 Download HTML
+                    </button>
+                </div>
+                <div class="export-feedback hidden" id="exportFeedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
